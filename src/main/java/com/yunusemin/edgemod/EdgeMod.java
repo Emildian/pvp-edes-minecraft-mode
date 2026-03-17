@@ -1,29 +1,21 @@
 package com.yunusemin.edgemod;
 
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.Item;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraft.world.item.Item;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 @Mod("edgemod")
 public class EdgeMod {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.createItems("edgemod");
-    
-    // Bot Kumandası
-    public static final net.neoforged.neoforge.registries.DeferredItem<Item> REMOTE = ITEMS.register("bot_remote", 
-        () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, "edgemod");
 
-    public EdgeMod(IEventBus bus) {
-        ITEMS.register(bus);
-        bus.addListener(this::addCreative);
-    }
+    // Hatalı olan yeri DeferredHolder yaparak düzelttik
+    public static final DeferredHolder<Item, Item> BOT_REMOTE = ITEMS.register("bot_remote", 
+        () -> new Item(new Item.Properties()));
 
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(REMOTE);
-        }
+    public EdgeMod(IEventBus modEventBus) {
+        ITEMS.register(modEventBus);
     }
 }

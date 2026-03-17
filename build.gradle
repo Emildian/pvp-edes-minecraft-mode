@@ -10,8 +10,11 @@ subprojects {
     apply plugin: 'java'
 }
 
-neoForge {
-    version = '21.1.1' // NeoForge 1.21.1 sürümü
+subsystems {
+    neoForge {
+        version = "21.1.10" // Burayı senin sürümün olan .10'a çektik
+    }
+}
     
     runs {
         client {

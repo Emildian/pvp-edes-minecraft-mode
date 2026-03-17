@@ -1,43 +1,44 @@
-plugins {
-    id 'java-library'
-    id 'eclipse'
-    id 'idea'
-    id 'net.neoforged.moddev' version '1.0.14'
-}
+package com.yunusemin.edgemod;
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-neoForge {
-    version = "21.1.10"
+@Mod("edgemod")
+public class EdgeMod {
+    public static final String MODID = "edgemod";
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, MODID);
 
-    parchment {
-        mappingsVersion = "2024.07.28"
-        minecraftVersion = "1.21"
+    public static final DeferredHolder<Item, Item> BOT_REMOTE = ITEMS.register("bot_remote", 
+        () -> new Item(new Item.Properties().stacksTo(1)) {
+            @Override
+            public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+                if (!level.isClientSide) {
+                    player.sendSystemMessage(Component.literal("§6[Emildian Edge] §fBot Sistemi Aktif!"));
+                }
+                return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
+            }
+        });
+
+    public EdgeMod(IEventBus modEventBus) {
+        ITEMS.register(modEventBus);
+        modEventBus.addListener(this::addCreative);
     }
 
-    runs {
-        client {
-            client()
-        }
-        server {
-            server()
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(BOT_REMOTE);
         }
     }
-
-    mods {
-        edgemod {
-            sourceSet sourceSets.main
-        }
-    }
-}
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-repositories {
-    mavenLocal()
-}
-
-dependencies {
 }

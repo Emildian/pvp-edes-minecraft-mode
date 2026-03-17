@@ -7,4 +7,18 @@ modId="edgemod"
 version="1.0.0"
 displayName="Edge PvP Mod"
 authors="Yunus Emin"
-description="Emildian Edge Studios Özel PvP Botu"
+description="Emildian Edge Studios tarafindan gelistirilen PvP Bot Modu."
+
+[[dependencies.edgemod]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.10,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.edgemod]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,)"
+ordering="NONE"
+side="BOTH"

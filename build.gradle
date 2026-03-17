@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '1.0.14'
+}
+
+group = 'com.yunusemin.edgemod'
+version = '1.0.0'
+
+subprojects {
+    apply plugin: 'java'
+}
+
+neoForge {
+    version = '21.1.1' // NeoForge 1.21.1 sürümü
+    
+    runs {
+        client {
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'edgemod'
+        }
+    }
+
+    mods {
+        edgemod {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+}

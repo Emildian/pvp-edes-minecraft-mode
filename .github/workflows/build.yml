@@ -1,5 +1,6 @@
 name: Edge PvP Mod Build
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest

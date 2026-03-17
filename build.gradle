@@ -10,11 +10,13 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 neoForge {
-    version = "21.1.10"
+    // Senin launcher'ındaki tam sürüm
+    version = "21.10.64"
 
     parchment {
         mappingsVersion = "2024.07.28"
-        minecraftVersion = "1.21"
+        // 1.21.10 ana yapısı için 1.21.1 mappingleri kullanılır
+        minecraftVersion = "1.21.1"
     }
 
     runs {

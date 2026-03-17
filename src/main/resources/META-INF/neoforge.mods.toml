@@ -1,24 +1,27 @@
 modLoader="javafml"
-loaderVersion="[21,)"
+# 21.1.10 için loaderVersion 4 ve üzeri olmalıdır
+loaderVersion="[4,)"
 license="MIT"
 
 [[mods]]
-modId="edgemod"
-version="1.0.0"
-displayName="Edge PvP Mod"
-authors="Yunus Emin"
-description="Emildian Edge Studios tarafindan gelistirilen PvP Bot Modu."
+    modId="edgemod"
+    version="1.0.0"
+    displayName="Edge PvP Mod"
+    authors="Yunus Emin"
+    description="Emildian Edge Studios tarafindan gelistirilen PvP Bot Modu."
 
 [[dependencies.edgemod]]
-modId="neoforge"
-type="required"
-versionRange="[21.1.10,)"
-ordering="NONE"
-side="BOTH"
+    modId="neoforge"
+    type="required"
+    # Burayı tam olarak 21.1.10 yapıyoruz
+    versionRange="[21.1.10,)"
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.edgemod]]
-modId="minecraft"
-type="required"
-versionRange="[1.21.1,)"
-ordering="NONE"
-side="BOTH"
+    modId="minecraft"
+    type="required"
+    # Oyun ana sürümü 1.21.1 tabanlı olduğu için burası böyle kalmalı
+    versionRange="[1.21.1,)"
+    ordering="NONE"
+    side="BOTH"

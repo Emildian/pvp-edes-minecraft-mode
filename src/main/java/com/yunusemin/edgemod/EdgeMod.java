@@ -25,7 +25,7 @@ public class EdgeMod {
             @Override
             public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
                 if (!level.isClientSide) {
-                    player.sendSystemMessage(Component.literal("§6[Emildian Edge] §fBot Sistemi Aktif!"));
+                    player.sendSystemMessage(Component.literal("§6[Emildian Edge] §fBot Kumandasi Calisiyor!"));
                 }
                 return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
             }
@@ -38,7 +38,8 @@ public class EdgeMod {
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-            event.accept(BOT_REMOTE);
+            // BURASI KRİTİK: .get() ekledik ki kutu açılsın
+            event.accept(BOT_REMOTE.get());
         }
     }
 }

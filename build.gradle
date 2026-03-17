@@ -21,9 +21,6 @@ neoForge {
         client {
             client()
         }
-        server {
-            server()
-        }
     }
 
     mods {
@@ -34,10 +31,3 @@ neoForge {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-repositories {
-    mavenLocal()
-}
-
-dependencies {
-}
